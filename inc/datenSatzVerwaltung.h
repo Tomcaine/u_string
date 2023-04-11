@@ -11,6 +11,10 @@
 #include <sstream>
 #include <regex>
 
+bool datumPruefung(std::string datum);
+std::string stringVerarbeitung();
+std::string intVerarbeitung();
+std::string datumVerarbeitung();
 extern void datenEingabe(std::vector<std::array<std::string, 5>>& datenBank);
 extern void datenAusgabe(std::vector<std::array<std::string, 5>>& datenBank);
 
