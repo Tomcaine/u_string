@@ -1,24 +1,29 @@
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <array>
+#include <string>
 #include "../inc/datenSatzVerwaltung.h"
 
 using namespace std;
 
 int main() {
-    bool test = false;
-    char cInput;
+    vector<array<string, 5>> datenBank;
+    bool loop = false;
+    string sInput;
     do {
         cout << "Datensatz eingeben (J/N): ";
-        cin >> cInput;
-        if (cInput != 'N' and cInput != 'J') {
-            test = true;
-        } else if (cInput == 'J') {
-            datenEingabe();
-            test = true;
+        getline(cin, sInput);
+        if (sInput != "N" and sInput != "J") {
+            loop = true;
+        } else if (sInput == "J") {
+            datenEingabe(datenBank);
+            loop = true;
         } else {
-            datenAusgabe();
-            test = false;
+            datenAusgabe(datenBank);
+            loop = false;
         }
-    } while (test);
+    } while (loop);
     cout << "Ende" << endl;
     return 0;
 }
