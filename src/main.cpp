@@ -24,6 +24,6 @@ int main() {
             loop = false;
         }
     } while (loop);
-    cout << "Ende" << endl;
+    //cout << "Ende" << endl;
     return 0;
 }

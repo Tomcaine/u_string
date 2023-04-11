@@ -2,10 +2,8 @@
 // Created by azubi on 11.04.2023.
 //
 #include "../inc/datenSatzVerwaltung.h"
-#include <regex>
 
 using namespace std;
-
 bool datumPruefung(string datum){
     uint16_t monate[13] = {0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int tag{};
@@ -117,5 +115,37 @@ extern void datenEingabe(vector<array<string, 5>>& datenBank){
     datenBank.push_back(mitarbeiterDaten);
 }
 extern void datenAusgabe(vector<array<string, 5>>& datenBank){
-    cout << "Name" << endl;
+    if (!datenBank.empty()) {
+        cout << "Name             Vorname          Personalnummer        Gehalt    Geburtstag" << endl;
+        string temp;
+        for (const array<string, 5> &person: datenBank) {
+            for (int i{}; i < 5; i++) {
+                temp = person.at(i);
+                switch (i) {
+                    case 0:
+                    case 1:
+                        if (temp.length() > 15) {
+                            for (int x{}; x < 15; x++) {
+                                cout << temp.at(x);
+                            }
+                            cout << ". ";
+                        } else if (temp.length() < 15) {
+                            cout << temp;
+                            for (int z{}; z < 15 - temp.length(); z++) {
+                                cout << " ";
+                            }
+                            cout << "  ";
+                        } else {
+                            cout << temp;
+                            cout << "  ";
+                        }
+                        break;
+                    default:
+                        cout << setfill(' ');
+                        cout << setw(14) << temp;
+                }
+            }
+            cout << endl;
+        }
+    }
 }
