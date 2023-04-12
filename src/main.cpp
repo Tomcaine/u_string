@@ -12,26 +12,24 @@ bool weiter();
 
 int main() {
     vector<personalDaten> datenBank;
-    bool loop = false;
-    string sInput;
-    do {
-        cout << "Datensatz eingeben (J/N): ";
-        getline(cin, sInput);
-        if (sInput != "N" and sInput != "J") {
-            loop = true;
-        } else if (sInput == "J") {
-            datenEingabe(datenBank);
-            loop = true;
-        } else {
-            datenAusgabe(datenBank);
-            loop = false;
-        }
-    } while (loop);
+
+    while (weiter()){
+        cout << "------ Neuer Eintrag ------" << endl;
+    }
     //cout << "Ende" << endl;
     return 0;
 }
 
 bool weiter(){
-    cout << "Datensatz eingeben (J/N): ";
+    string sInput;
+    cout << "Datensatz eingeben (J/N): " << endl;
     cout << "> ";
+    getline(cin, sInput);
+    if (sInput != "N" and sInput != "J") {
+        return true;
+    } else if (sInput == "J") {
+        return true;
+    } else {
+        return false;
+    }
 }

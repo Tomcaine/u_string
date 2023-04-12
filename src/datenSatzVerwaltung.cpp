@@ -3,6 +3,10 @@
 //
 #include "../inc/datenSatzVerwaltung.h"
 
+#define ZAHL_ZEICHEN_MUSTER "[0-9!@#$%^&*()_+{}|:<>?\\[\\]]"
+#define BUCHSTABEN_ZEICHEN_MUSTER "[A-Za-z!@#$%^&*()_+{}|:<>?\\-\\[\\]]"
+#define DATUMSMUSTER "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}"
+
 using namespace std;
 bool datumPruefung(string datum){
     uint16_t monate[13] = {0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
@@ -36,10 +40,64 @@ bool datumPruefung(string datum){
     return false;
 }
 
+string eingabeString(const std::string& text){
+    cout << text << ":" << endl;
+    cout << "> ";
 
+    string eingabe;
+    bool loop = false;
+    regex muster(ZAHL_ZEICHEN_MUSTER);
+    do{
+        loop = false;
+        getline(cin, eingabe);
+        if (eingabe.empty()){
+            loop = true;
+            cout << "Feld darf nicht leer sein." << endl;
+            cout << "> ";
+        } else if (regex_search(eingabe, muster)){
+            loop = true;
+            cout << "Feld darf keine Zahlen oder sonderzeichen enthalten." << endl;
+            cout << "> ";
+        }
+    } while (loop);
+    return eingabe;
+}
 
+int eingabeInt(const std::string&){
+    string eingabe;
+    bool loop = false;
+    regex muster(BUCHSTABEN_ZEICHEN_MUSTER);
+    do{
+        loop = false;
+        getline(cin, eingabe);
+        if (eingabe.empty()){
+            loop = true;
+            cout << "Feld darf nicht leer sein." << endl;
+            cout << "> ";
+        } else if (regex_search(eingabe, muster)){
+            loop = true;
+            cout << "Feld darf keine Buchstaben oder sonderzeichen enthalten." << endl;
+            cout << "> ";
+        }
+    } while (loop);
+    return eingabe;
+}
 
+int eingabeFlaot(const std::string&){
+    return 0;
+}
 
+std::string datumVerarbeitung(const std::string&){
+    return "";
+}
+
+extern void ausgabeTabelle(const std::vector<personalDaten>&){
+
+}
+
+extern void ausgabe(const personalDaten&){
+
+}
 
 
 
@@ -55,24 +113,6 @@ bool datumPruefung(string datum){
 
 
 /*
-string stringVerarbeitung(){
-    string eingabe;
-    bool loop = false;
-    regex muster("[0-9!@#$%^&*()_+{}|:<>?\\[\\]]");
-    do{
-        getline(cin, eingabe);
-        if (eingabe.empty()){
-            loop = true;
-            cout << "Feld darf nicht leer sein." << endl;
-            cout << "> ";
-        } else if (regex_search(eingabe, muster)){
-            loop = true;
-            cout << "Feld darf keine Zahlen oder sonderzeichen enthalten." << endl;
-            cout << "> ";
-        } else loop = false;
-    } while (loop);
-    return eingabe;
-}
 int intVerarbeitung(){
     string eingabe;
     bool loop = false;
