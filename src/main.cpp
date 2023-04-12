@@ -4,11 +4,14 @@
 #include <array>
 #include <string>
 #include "../inc/datenSatzVerwaltung.h"
+#include "../inc/personalM.h"
 
 using namespace std;
 
+bool weiter();
+
 int main() {
-    vector<array<string, 5>> datenBank;
+    vector<personalDaten> datenBank;
     bool loop = false;
     string sInput;
     do {
@@ -26,4 +29,9 @@ int main() {
     } while (loop);
     //cout << "Ende" << endl;
     return 0;
+}
+
+bool weiter(){
+    cout << "Datensatz eingeben (J/N): ";
+    cout << "> ";
 }

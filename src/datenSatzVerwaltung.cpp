@@ -36,6 +36,25 @@ bool datumPruefung(string datum){
     return false;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 string stringVerarbeitung(){
     string eingabe;
     bool loop = false;
@@ -54,7 +73,7 @@ string stringVerarbeitung(){
     } while (loop);
     return eingabe;
 }
-string intVerarbeitung(){
+int intVerarbeitung(){
     string eingabe;
     bool loop = false;
     regex muster(R"([A-Za-z!@#$%^&*()_+{}|:<>?\-\[\]])");
@@ -72,7 +91,7 @@ string intVerarbeitung(){
     } while (loop);
     return eingabe;
 }
-string datumVerarbeitung(){
+int datumVerarbeitung(){
     string eingabe;
     bool loop = false;
     regex muster(R"([A-Za-z!@#$%^&*()_+{}|:<>?\-\[\]])");
@@ -99,22 +118,27 @@ string datumVerarbeitung(){
     } while (loop);
     return eingabe;
 }
-extern void datenEingabe(vector<array<string, 5>>& datenBank){
-    array<string, 5> mitarbeiterDaten;
+extern void datenEingabe(vector<personalDaten>& datenBank){
+    personalDaten mitarbeiterDaten;
     cout << "------ Neuer Eintrag ------" << endl;
-    cout << "Name: ";
-    mitarbeiterDaten.at(0) = stringVerarbeitung();
-    cout << "Vorname: ";
-    mitarbeiterDaten.at(1) = stringVerarbeitung();
-    cout << "Personalnummer: ";
-    mitarbeiterDaten.at(2) = intVerarbeitung();
-    cout << "Gehalt: ";
-    mitarbeiterDaten.at(3) = intVerarbeitung();
-    cout << "Geburtstag: ";
-    mitarbeiterDaten.at(4) = datumVerarbeitung();
+    cout << "Name:" << endl;
+    cout << "> ";
+    mitarbeiterDaten.name = stringVerarbeitung();
+    cout << "Vorname:" << endl;
+    cout << "> ";
+    mitarbeiterDaten.vorname = stringVerarbeitung();
+    cout << "Personalnummer:" << endl;
+    cout << "> ";
+    mitarbeiterDaten.pNummer = intVerarbeitung();
+    cout << "Gehalt:" << endl;
+    cout << "> ";
+    mitarbeiterDaten.gehalt = intVerarbeitung();
+    cout << "Geburtstag:" << endl;
+    cout << "> ";
+    mitarbeiterDaten.geburtsDatum = datumVerarbeitung();
     datenBank.push_back(mitarbeiterDaten);
 }
-extern void datenAusgabe(vector<array<string, 5>>& datenBank){
+extern void datenAusgabe(vector<personalDaten>& datenBank){
     if (!datenBank.empty()) {
         cout << "Name             Vorname          Personalnummer        Gehalt    Geburtstag" << endl;
         string temp;
@@ -149,3 +173,4 @@ extern void datenAusgabe(vector<array<string, 5>>& datenBank){
         }
     }
 }
+ */

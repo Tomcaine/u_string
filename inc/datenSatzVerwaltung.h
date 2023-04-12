@@ -11,12 +11,14 @@
 #include <sstream>
 #include <regex>
 #include <iomanip>
+#include "../inc/personalM.h"
 
 bool datumPruefung(std::string datum);
-std::string stringVerarbeitung();
-std::string intVerarbeitung();
-std::string datumVerarbeitung();
-extern void datenEingabe(std::vector<std::array<std::string, 5>>& datenBank);
-extern void datenAusgabe(std::vector<std::array<std::string, 5>>& datenBank);
+std::string eingabeString(const std::string&);
+int eingabeInt(const std::string&);
+int eingabeFlaot(const std::string&);
+std::string datumVerarbeitung(const std::string&);
+extern void ausgabeTabelle(const std::vector<personalDaten>&);
+extern void ausgabe(const personalDaten&);
 
 #endif //U_STRING_DATENSATZVERWALTUNG_H
