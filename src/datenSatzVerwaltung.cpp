@@ -5,9 +5,13 @@
 
 #define ZAHL_ZEICHEN_MUSTER "[0-9!@#$%^&*()_+{}|:<>?\\[\\]]"
 #define BUCHSTABEN_ZEICHEN_MUSTER "[A-Za-z!@#$%^&*()_+{}|:<>?\\-\\[\\]]"
-#define DATUMSMUSTER "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}"
+#define DATUMS_MUSTER "[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}"
+#define FLOAT_MUSTER ".*[.,].{2}"
 
 using namespace std;
+
+istringstream temp;
+
 bool datumPruefung(string datum){
     uint16_t monate[13] = {0,31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     int tag{};
@@ -63,10 +67,17 @@ string eingabeString(const std::string& text){
     return eingabe;
 }
 
-int eingabeInt(const std::string&){
+int eingabeInt(const std::string& text){
+    cout << text << ":" << endl;
+    cout << "> ";
+
     string eingabe;
     bool loop = false;
-    regex muster(BUCHSTABEN_ZEICHEN_MUSTER);
+    int returnValue{};
+
+    string tempMuster = BUCHSTABEN_ZEICHEN_MUSTER;
+    tempMuster.replace(tempMuster.length() - 1, 1, ".,]");
+    regex muster(tempMuster);
     do{
         loop = false;
         getline(cin, eingabe);
@@ -80,11 +91,48 @@ int eingabeInt(const std::string&){
             cout << "> ";
         }
     } while (loop);
-    return eingabe;
+    temp.str(eingabe);
+    temp >> returnValue;
+    temp.clear();
+    return returnValue;
 }
 
-int eingabeFlaot(const std::string&){
-    return 0;
+int eingabeFlaot(const std::string& text){
+    cout << text << ":" << endl;
+    cout << "> ";
+
+    string eingabe;
+    bool loop = false;
+    int returnValue{};
+
+    regex muster(BUCHSTABEN_ZEICHEN_MUSTER);
+    regex flaotMuster(FLOAT_MUSTER);
+    do{
+        loop = false;
+        getline(cin, eingabe);
+        if (eingabe.empty()){
+            loop = true;
+            cout << "Feld darf nicht leer sein." << endl;
+            cout << "> ";
+        } else if (regex_search(eingabe, muster)){
+            loop = true;
+            cout << "Feld darf keine Buchstaben oder sonderzeichen enthalten." << endl;
+            cout << "> ";
+        } else if (!regex_search(eingabe, flaotMuster)){
+            loop = true;
+            cout << "Falsches Formart (0000.00)" << endl;
+            cout << "> ";
+        }
+    } while (loop);
+    if (eingabe.find(',') == string::npos){
+        eingabe.replace(eingabe.find('.'), 1, "");
+    } else{
+        eingabe.replace(eingabe.find(','), 1, "");
+    }
+    temp.str(eingabe);
+    temp >> returnValue;
+    temp.clear();
+    return returnValue;
 }
 
 std::string datumVerarbeitung(const std::string&){
@@ -113,24 +161,6 @@ extern void ausgabe(const personalDaten&){
 
 
 /*
-int intVerarbeitung(){
-    string eingabe;
-    bool loop = false;
-    regex muster(R"([A-Za-z!@#$%^&*()_+{}|:<>?\-\[\]])");
-    do{
-        getline(cin, eingabe);
-        if (eingabe.empty()){
-            loop = true;
-            cout << "Feld darf nicht leer sein." << endl;
-            cout << "> ";
-        } else if (regex_search(eingabe, muster)){
-            loop = true;
-            cout << "Feld darf keine Buchstaben oder sonderzeichen enthalten." << endl;
-            cout << "> ";
-        } else loop = false;
-    } while (loop);
-    return eingabe;
-}
 int datumVerarbeitung(){
     string eingabe;
     bool loop = false;

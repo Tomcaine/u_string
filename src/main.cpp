@@ -9,12 +9,12 @@
 using namespace std;
 
 bool weiter();
-
+#define BUCHSTABEN_ZEICHEN_MUSTER "[A-Za-z!@#$%^&*()_+{}|:<>?\\-\\[\\]]"
 int main() {
     vector<personalDaten> datenBank;
-
     while (weiter()){
         cout << "------ Neuer Eintrag ------" << endl;
+        eingabeFlaot("test");
     }
     //cout << "Ende" << endl;
     return 0;
