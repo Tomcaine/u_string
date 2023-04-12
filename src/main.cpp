@@ -13,10 +13,17 @@ bool weiter();
 int main() {
     vector<personalDaten> datenBank;
     while (weiter()){
+        personalDaten neuerEintrag;
         cout << "------ Neuer Eintrag ------" << endl;
-
+        neuerEintrag.name = eingabeString("Name");
+        neuerEintrag.vorname = eingabeString("Vorname");
+        neuerEintrag.pNummer = eingabeInt("Personalnummer");
+        neuerEintrag.gehalt = eingabeFloat("Gehalt");
+        neuerEintrag.geburtsDatum = eingabeDatum("Geburtstag");
+        datenBank.push_back(neuerEintrag);
     }
-    //cout << "Ende" << endl;
+    ausgabeTabelle(datenBank);
+    cout << "Ende" << endl;
     return 0;
 }
 

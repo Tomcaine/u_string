@@ -16,9 +16,11 @@
 bool datumPruefung(std::string datum);
 std::string eingabeString(const std::string&);
 int eingabeInt(const std::string&);
-int eingabeFlaot(const std::string&);
-std::string datumVerarbeitung(const std::string&);
-extern void ausgabeTabelle(const std::vector<personalDaten>&);
-extern void ausgabe(const personalDaten&);
+int eingabeFloat(const std::string&);
+std::string eingabeDatum(const std::string&);
+void ausgabeTabelle(const std::vector<personalDaten>&);
+void ausgabe(const personalDaten&);
+std::string ausgabeString(std::string);
+std::string ausgabeFloat(int);
 
 #endif //U_STRING_DATENSATZVERWALTUNG_H

@@ -97,7 +97,7 @@ int eingabeInt(const std::string& text){
     return returnValue;
 }
 
-int eingabeFlaot(const std::string& text){
+int eingabeFloat(const std::string& text){
     cout << text << endl;
     cout << "> ";
 
@@ -125,9 +125,9 @@ int eingabeFlaot(const std::string& text){
         }
     } while (loop);
     if (eingabe.find(',') == string::npos){
-        eingabe.replace(eingabe.find('.'), 1, "");
+        eingabe.erase(eingabe.find('.'), 1);
     } else{
-        eingabe.replace(eingabe.find(','), 1, "");
+        eingabe.erase(eingabe.find(','), 1);
     }
     temp.str(eingabe);
     temp >> returnValue;
@@ -135,7 +135,7 @@ int eingabeFlaot(const std::string& text){
     return returnValue;
 }
 
-std::string datumVerarbeitung(const std::string& text){
+std::string eingabeDatum(const std::string& text){
     cout << text << endl;
     cout << "> ";
     string eingabe;
@@ -166,81 +166,42 @@ std::string datumVerarbeitung(const std::string& text){
     return eingabe;
 }
 
-extern void ausgabeTabelle(const std::vector<personalDaten>&){
-
-}
-
-extern void ausgabe(const personalDaten&){
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-extern void datenEingabe(vector<personalDaten>& datenBank){
-    personalDaten mitarbeiterDaten;
-    cout << "------ Neuer Eintrag ------" << endl;
-    cout << "Name:" << endl;
-    cout << "> ";
-    mitarbeiterDaten.name = stringVerarbeitung();
-    cout << "Vorname:" << endl;
-    cout << "> ";
-    mitarbeiterDaten.vorname = stringVerarbeitung();
-    cout << "Personalnummer:" << endl;
-    cout << "> ";
-    mitarbeiterDaten.pNummer = intVerarbeitung();
-    cout << "Gehalt:" << endl;
-    cout << "> ";
-    mitarbeiterDaten.gehalt = intVerarbeitung();
-    cout << "Geburtstag:" << endl;
-    cout << "> ";
-    mitarbeiterDaten.geburtsDatum = datumVerarbeitung();
-    datenBank.push_back(mitarbeiterDaten);
-}
-extern void datenAusgabe(vector<personalDaten>& datenBank){
+void ausgabeTabelle(const std::vector<personalDaten>& datenBank){
     if (!datenBank.empty()) {
         cout << "Name             Vorname          Personalnummer        Gehalt    Geburtstag" << endl;
-        string temp;
-        for (const array<string, 5> &person: datenBank) {
-            for (int i{}; i < 5; i++) {
-                temp = person.at(i);
-                switch (i) {
-                    case 0:
-                    case 1:
-                        if (temp.length() > 15) {
-                            for (int x{}; x < 15; x++) {
-                                cout << temp.at(x);
-                            }
-                            cout << ". ";
-                        } else if (temp.length() < 15) {
-                            cout << temp;
-                            for (int z{}; z < 15 - temp.length(); z++) {
-                                cout << " ";
-                            }
-                            cout << "  ";
-                        } else {
-                            cout << temp;
-                            cout << "  ";
-                        }
-                        break;
-                    default:
-                        cout << setfill(' ');
-                        cout << setw(14) << temp;
-                }
-            }
-            cout << endl;
+        for (const personalDaten& person : datenBank){
+            ausgabe(person);
         }
     }
 }
- */
+
+void ausgabe(const personalDaten& person){
+    cout << setfill(' ');
+    cout << ausgabeString(person.name);
+    cout << ausgabeString(person.vorname);
+    cout << setw(14) << person.pNummer;
+    cout << setw(14) << ausgabeFloat(person.gehalt);
+    cout << setw(14) << person.geburtsDatum;
+    cout << endl;
+}
+
+string ausgabeString(string text){
+    string returnValue;
+    if (text.length() > 15) {
+        text.erase(15, text.length() - 15);
+        text.insert(16,". ") += ". ";
+
+    } else if (text.length() < 15) {
+        text += string(17-text.length(), ' ');
+
+    } else {
+        text += "  ";
+    }
+    return text;
+}
+
+string ausgabeFloat(int zahl){
+    string tempString = to_string(zahl);
+    tempString.insert(tempString.length() - 2, ".");
+    return tempString;
+}
