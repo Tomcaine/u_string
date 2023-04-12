@@ -14,7 +14,7 @@ int main() {
     vector<personalDaten> datenBank;
     while (weiter()){
         cout << "------ Neuer Eintrag ------" << endl;
-        eingabeFlaot("test");
+
     }
     //cout << "Ende" << endl;
     return 0;

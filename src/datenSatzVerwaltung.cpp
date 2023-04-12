@@ -45,7 +45,7 @@ bool datumPruefung(string datum){
 }
 
 string eingabeString(const std::string& text){
-    cout << text << ":" << endl;
+    cout << text << endl;
     cout << "> ";
 
     string eingabe;
@@ -68,7 +68,7 @@ string eingabeString(const std::string& text){
 }
 
 int eingabeInt(const std::string& text){
-    cout << text << ":" << endl;
+    cout << text << endl;
     cout << "> ";
 
     string eingabe;
@@ -98,7 +98,7 @@ int eingabeInt(const std::string& text){
 }
 
 int eingabeFlaot(const std::string& text){
-    cout << text << ":" << endl;
+    cout << text << endl;
     cout << "> ";
 
     string eingabe;
@@ -135,8 +135,35 @@ int eingabeFlaot(const std::string& text){
     return returnValue;
 }
 
-std::string datumVerarbeitung(const std::string&){
-    return "";
+std::string datumVerarbeitung(const std::string& text){
+    cout << text << endl;
+    cout << "> ";
+    string eingabe;
+    bool loop = false;
+    regex muster(BUCHSTABEN_ZEICHEN_MUSTER);
+    regex datumMuster(DATUMS_MUSTER);
+    do{
+        loop = false;
+        getline(cin, eingabe);
+        if (eingabe.empty()){
+            loop = true;
+            cout << "Feld darf nicht leer sein." << endl;
+            cout << "> ";
+        } else if (regex_search(eingabe, muster)){
+            loop = true;
+            cout << "Feld darf keine Buchstaben oder sonderzeichen enthalten." << endl;
+            cout << "> ";
+        } else if (!regex_match(eingabe, datumMuster)){
+            loop = true;
+            cout << "Datumsformat falsch (TT.MM.JJJJ)." << endl;
+            cout << "> ";
+        } else if (!datumPruefung(eingabe)){
+            loop = true;
+            cout << "Datum existiert nicht." << endl;
+            cout << "> ";
+        }
+    } while (loop);
+    return eingabe;
 }
 
 extern void ausgabeTabelle(const std::vector<personalDaten>&){
@@ -161,33 +188,6 @@ extern void ausgabe(const personalDaten&){
 
 
 /*
-int datumVerarbeitung(){
-    string eingabe;
-    bool loop = false;
-    regex muster(R"([A-Za-z!@#$%^&*()_+{}|:<>?\-\[\]])");
-    regex datumMuster("[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}");
-    do{
-        getline(cin, eingabe);
-        if (eingabe.empty()){
-            loop = true;
-            cout << "Feld darf nicht leer sein." << endl;
-            cout << "> ";
-        } else if (regex_search(eingabe, muster)){
-            loop = true;
-            cout << "Feld darf keine Buchstaben oder sonderzeichen enthalten." << endl;
-            cout << "> ";
-        } else if (!regex_match(eingabe, datumMuster)){
-            loop = true;
-            cout << "Datumsformat falsch (TT.MM.JJJJ)." << endl;
-            cout << "> ";
-        } else if (!datumPruefung(eingabe)){
-            loop = true;
-            cout << "Datum existiert nicht." << endl;
-            cout << "> ";
-        } else loop = false;
-    } while (loop);
-    return eingabe;
-}
 extern void datenEingabe(vector<personalDaten>& datenBank){
     personalDaten mitarbeiterDaten;
     cout << "------ Neuer Eintrag ------" << endl;
