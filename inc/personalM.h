@@ -7,7 +7,7 @@
 
 #include <string>
 
-struct personalDaten {
+struct PersonalDaten {
     std::string name;
     std::string vorname;
     int pNummer;

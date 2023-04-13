@@ -1,19 +1,18 @@
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <array>
-#include <string>
 #include "../inc/datenSatzVerwaltung.h"
-#include "../inc/personalM.h"
+#include <iostream>
+#include <string>
+#include <vector>
 
 using namespace std;
 
 bool weiter();
+
 #define BUCHSTABEN_ZEICHEN_MUSTER "[A-Za-z!@#$%^&*()_+{}|:<>?\\-\\[\\]]"
+
 int main() {
-    vector<personalDaten> datenBank;
-    while (weiter()){
-        personalDaten neuerEintrag;
+    vector<PersonalDaten> datenBank;
+    while (weiter()) {
+        PersonalDaten neuerEintrag;
         cout << "------ Neuer Eintrag ------" << endl;
         neuerEintrag.name = eingabeString("Name");
         neuerEintrag.vorname = eingabeString("Vorname");
@@ -27,7 +26,7 @@ int main() {
     return 0;
 }
 
-bool weiter(){
+bool weiter() {
     string sInput;
     cout << "Datensatz eingeben (J/N): " << endl;
     cout << "> ";
