@@ -1,4 +1,4 @@
-#include "../inc/datenSatzVerwaltung.h"
+#include "datenSatzVerwaltung.h"
 #include <iostream>
 #include <string>
 #include <vector>

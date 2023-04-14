@@ -4,7 +4,7 @@
 #ifndef U_STRING_DATENSATZVERWALTUNG_H
 #define U_STRING_DATENSATZVERWALTUNG_H
 
-#include "../inc/personalM.h"
+#include "personalM.h"
 #include <array>
 #include <iomanip>
 #include <iostream>

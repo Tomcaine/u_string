@@ -1,7 +1,7 @@
 //
 // Created by azubi on 11.04.2023.
 //
-#include "../inc/datenSatzVerwaltung.h"
+#include "datenSatzVerwaltung.h"
 
 #define ZAHL_ZEICHEN_MUSTER "[0-9!@#$%^&*()_+{}|:<>?\\[\\]]"
 #define BUCHSTABEN_ZEICHEN_MUSTER "[A-Za-z!@#$%^&*()_+{}|:<>?\\-\\[\\]]"
